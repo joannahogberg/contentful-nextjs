@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 export default ({
 	children,
-	title = 'Editorials',
+	title = 'Contentful Next.js',
 	desc = 'This is an example of a meta description',
 	img = '',
 	url = ''

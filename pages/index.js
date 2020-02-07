@@ -18,7 +18,7 @@ function HomePage() {
 	}, []);
 
 	return (
-			<Layout title="Editorials">
+			<Layout title="Contentful Next.js">
 				<div className="wrapper">
 					{posts.length > 0 ? posts.map((p) => <PostCard post={p} key={p.fields.slug} />) : null}
 				</div>

@@ -1,22 +1,29 @@
-import React from 'react'
-import Link from 'next/link'
+import { useEffect, useState } from 'react';
+import PostCard from '../components/PostCard/PostCard';
+import { getPosts } from '../helpers/contentful';
 
-export default () => (
-  <ul>
-    <li>
-      <Link href="/b" as="/a">
-        <a>a</a>
-      </Link>
-    </li>
-    <li>
-      <Link href="/a" as="/b">
-        <a>b</a>
-      </Link>
-    </li>
-    <li>
-      <Link href={{ pathname: '/posts', query: { id: '2' } }} as="/posts/2">
-        <a>post #2</a>
-      </Link>
-    </li>
-  </ul>
-)
+import Layout from '../components/layout'
+
+import '../styles/style.scss';
+
+function HomePage() {
+	const [posts, setPosts] = useState([]);
+
+	useEffect(() => {
+		async function getAllPosts() {
+			const allPosts = await getPosts();
+			setPosts([...allPosts]);
+		}
+		getAllPosts();
+	}, []);
+
+	return (
+			<Layout title="Editorials">
+				<div className="wrapper">
+					{posts.length > 0 ? posts.map((p) => <PostCard post={p} key={p.fields.slug} />) : null}
+				</div>
+			</Layout>
+	);
+}
+
+export default HomePage;

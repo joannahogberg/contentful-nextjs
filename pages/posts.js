@@ -1,19 +1,24 @@
-import React, { Component } from 'react'
+import { getPostBySlug } from '../helpers/contentful';
+import Layout from '../components/layout';
 
-export default class extends Component {
-  static getInitialProps({ query: { id } }) {
-    return { postId: id }
-  }
+const Post = (props) => {
+	console.log(props);
+	return (
+		<Layout title={props.post.fields.name} img={props.post.fields.image.fields.file.url}>
+			<h1>{props.post.fields.name}</h1>
+			<img
+				alt={props.post.fields.image.fields.file.fileName}
+				src={props.post.fields.image.fields.file.url}
+				className="post-card__image"
+			/>
+		</Layout>
+	);
+};
 
-  render() {
-    return (
-      <div>
-        <h1>My blog post #{this.props.postId}</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-      </div>
-    )
-  }
-}
+Post.getInitialProps = async (query) => {
+	const { id } = query;
+	const post = await getPostBySlug(id);
+	return { post };
+};
+
+export default Post;

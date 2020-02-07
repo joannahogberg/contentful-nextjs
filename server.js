@@ -17,6 +17,10 @@ app.prepare()
 			return app.render(req, res, '/posts', { id: req.params.id });
 		});
 
+		server.get('/pagination?page=', (req, res) => {
+			return app.render(req, res, '/pagination', { id: req.params.id });
+		});
+
 		server.all('*', (req, res) => {
 			return handle(req, res);
 		});

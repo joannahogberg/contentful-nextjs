@@ -2,7 +2,6 @@ import Link from 'next/link';
 import './postcard.scss';
 
 function PostCard({ post }) {
-	console.log(post)
 	return (
 		<div className="post-card">
 			<Link href={{ pathname: '/posts', query: { id: post.fields.slug } }} as={`/posts/${post.fields.slug}`}>

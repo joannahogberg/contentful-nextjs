@@ -25,6 +25,9 @@ export default ({
 				<Link href="/">
 					<a>Home</a>
 				</Link>
+				<Link href="/pagination">
+					<a>test</a>
+				</Link>
 			</nav>
 		</header>
 
